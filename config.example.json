@@ -1,0 +1,23 @@
+{
+  "listen_addr": "127.0.0.1:8080",
+  "target_addr": "",
+  "mode": "mixed",
+  "fake_sni": "speedtest.net",
+  "fake_sni_list": [
+    "speedtest.net",
+    "cloudflare.com",
+    "digikala.com",
+    "varzesh3.com",
+    "aparat.com",
+    "snapp.ir"
+  ],
+  "strategy": "combo",
+  "fragment_size": 3,
+  "fragment_delay_ms": 5,
+  "fake_ttl": 5,
+  "out_of_window_offset": 12000,
+  "doh_server": "https://cloudflare-dns.com/dns-query",
+  "enable_clean_dns": true,
+  "verbose": false
+}
+

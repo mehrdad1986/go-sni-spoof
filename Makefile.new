@@ -1,0 +1,63 @@
+.PHONY: all build clean test scanner install
+
+# Default target
+all: build scanner
+
+# Build main proxy
+build:
+	@echo "Building sni-spoof-fixed.exe..."
+	go build -ldflags="-s -w" -o sni-spoof-fixed.exe ./cmd/sni-spoof
+	@echo "✅ Built: sni-spoof-fixed.exe"
+
+# Build scanner
+scanner:
+	@echo "Building sni-scan.exe..."
+	go build -ldflags="-s -w" -o sni-scan.exe ./cmd/sni-scan
+	@echo "✅ Built: sni-scan.exe"
+
+# Build everything with optimizations
+release: clean
+	@echo "Building release binaries..."
+	go build -ldflags="-s -w" -trimpath -o sni-spoof-fixed.exe ./cmd/sni-spoof
+	go build -ldflags="-s -w" -trimpath -o sni-scan.exe ./cmd/sni-scan
+	@echo "✅ Release builds complete!"
+
+# Run tests
+test:
+	@echo "Running tests..."
+	go test ./... -v
+
+# Clean build artifacts
+clean:
+	@echo "Cleaning..."
+	del /F /Q sni-spoof-fixed.exe sni-scan.exe test-build.exe 2>nul || echo "Already clean"
+
+# Install dependencies
+deps:
+	@echo "Installing dependencies..."
+	go mod tidy
+	go mod verify
+
+# Run the scanner
+scan:
+	@echo "Running SNI scanner..."
+	.\sni-scan.exe
+
+# Run proxy in mixed mode
+run:
+	@echo "Starting proxy in mixed mode..."
+	.\sni-spoof-fixed.exe -listen 127.0.0.1:1080 -mode mixed -verbose
+
+# Show help
+help:
+	@echo "Available targets:"
+	@echo "  make build    - Build main proxy"
+	@echo "  make scanner  - Build SNI scanner"
+	@echo "  make all      - Build both (default)"
+	@echo "  make release  - Build optimized release binaries"
+	@echo "  make test     - Run tests"
+	@echo "  make clean    - Remove build artifacts"
+	@echo "  make deps     - Install dependencies"
+	@echo "  make scan     - Run SNI scanner"
+	@echo "  make run      - Run proxy in mixed mode"
+	@echo "  make help     - Show this help"

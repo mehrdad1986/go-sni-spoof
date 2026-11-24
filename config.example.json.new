@@ -1,0 +1,37 @@
+{
+  "_comment": "Go SNI Spoofing - Configuration Example",
+  "_instructions": "Copy to config.json and customize for your needs",
+  
+  "listen_addr": "127.0.0.1:1080",
+  "target_addr": "172.67.139.236:443",
+  "mode": "mixed",
+  
+  "_fake_sni_options": "Use scanner to find working domains: .\sni-scan.exe",
+  "fake_sni": "speedtest.net",
+  "fake_sni_list": [
+    "speedtest.net",
+    "cloudflare.com",
+    "cdn.cloudflare.net",
+    "fast.com",
+    "google.com",
+    "digikala.com",
+    "aparat.com",
+    "snapp.ir"
+  ],
+  
+  "_strategy_options": "combo (recommended), fragment, decoy, ttl",
+  "strategy": "combo",
+  
+  "_performance_tuning": "Adjust these based on your network",
+  "fragment_size": 3,
+  "fragment_delay_ms": 50,
+  "fake_ttl": 5,
+  "handshake_timeout_ms": 2500,
+  
+  "_dns_settings": "Clean DNS prevents ISP poisoning",
+  "doh_server": "https://cloudflare-dns.com/dns-query",
+  "enable_clean_dns": true,
+  
+  "_logging": "Set to true for troubleshooting",
+  "verbose": false
+}

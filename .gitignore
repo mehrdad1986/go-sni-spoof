@@ -1,0 +1,67 @@
+# Binaries
+*.exe
+*.exe~
+*.deb
+*.rpm
+*.dll
+*.so
+*.dylib
+*.sys
+sni-spoof
+sni-spoof-*
+sni-scan
+sni-scan-*
+
+# Test binary
+*.test
+
+# Go workspace file
+go.work
+
+# Dependency directories
+vendor/
+
+# Build artifacts
+bin/
+dist/
+build/
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Certificates and keys (NEVER commit these!)
+*.key
+*.crt
+*.pem
+*.p12
+*.pfx
+*.cer
+
+# Configuration files with secrets
+*.env
+*config.json
+*settings.json
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Release packages
+*.zip
+*.tar.gz
+
+# Node modules (if any)
+node_modules/
